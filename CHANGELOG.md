@@ -5,6 +5,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.10](https://github.com/sanity-io/ui/compare/v2.1.9...v2.1.10) (2024-05-16)
+
+### Bug Fixes
+
+- **deps:** update dependency framer-motion to v11.2.3 ([#1300](https://github.com/sanity-io/ui/issues/1300)) ([d4b319f](https://github.com/sanity-io/ui/commit/d4b319f62b00eb0bfed671a68f0d2a4673f4c987))
+
+## [2.1.9](https://github.com/sanity-io/ui/compare/v2.1.8...v2.1.9) (2024-05-16)
+
+### Bug Fixes
+
+- **deps:** update dependency framer-motion to v11.2.2 ([#1298](https://github.com/sanity-io/ui/issues/1298)) ([398151a](https://github.com/sanity-io/ui/commit/398151aa06ceb17b16d35ee94814d7df725d81c1))
+
+## [2.1.8](https://github.com/sanity-io/ui/compare/v2.1.7...v2.1.8) (2024-05-14)
+
+### Bug Fixes
+
+- **deps:** update dependency framer-motion to v11.2.0 ([#1296](https://github.com/sanity-io/ui/issues/1296)) ([8627815](https://github.com/sanity-io/ui/commit/8627815313aa5aac3244223ca715ffdc5118cdb2))
+
 ## [2.1.7](https://github.com/sanity-io/ui/compare/v2.1.6...v2.1.7) (2024-05-11)
 
 ### Bug Fixes
