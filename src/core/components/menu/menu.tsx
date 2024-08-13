@@ -1,6 +1,6 @@
-import {forwardRef, useCallback, useEffect, useMemo} from 'react'
+import {forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef} from 'react'
 import {styled} from 'styled-components'
-import {useClickOutside, useForwardedRef, useGlobalKeyDown} from '../../hooks'
+import {useClickOutsideEvent, useGlobalKeyDown} from '../../hooks'
 import {Box, Stack} from '../../primitives'
 import {ResponsivePaddingProps} from '../../primitives/types'
 import {useLayer} from '../../utils'
@@ -41,7 +41,7 @@ const Root = styled(Box)`
  */
 export const Menu = forwardRef(function Menu(
   props: MenuProps & Omit<React.HTMLProps<HTMLDivElement>, 'as' | 'height' | 'role' | 'tabIndex'>,
-  ref: React.ForwardedRef<HTMLDivElement>,
+  forwardedRef: React.ForwardedRef<HTMLDivElement>,
 ) {
   const {
     children,
@@ -62,7 +62,9 @@ export const Menu = forwardRef(function Menu(
     ...restProps
   } = props
 
-  const forwardedRef = useForwardedRef(ref)
+  const ref = useRef<HTMLDivElement | null>(null)
+
+  useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(forwardedRef, () => ref.current)
 
   const {isTopLayer} = useLayer()
 
@@ -73,16 +75,29 @@ export const Menu = forwardRef(function Menu(
     handleItemMouseLeave,
     handleKeyDown,
     mount,
-    rootElement,
-    setRootElement,
-  } = useMenuController({onKeyDown, originElement, shouldFocus})
+  } = useMenuController({onKeyDown, originElement, shouldFocus, rootElementRef: ref})
 
+  const unregisterElementRef = useRef<(() => void) | null>(null)
   const handleRefChange = useCallback(
     (el: HTMLDivElement | null) => {
-      setRootElement(el)
-      forwardedRef.current = el
+      // Run cleanup of previously registered elements
+      if (unregisterElementRef.current) {
+        // The `registerElement` callback were originally used in a `useEffect`, so it returns a cleanup function that is a bit gnarly to handle in a ref callback.
+        // Since we can't change the `registerElement` implementation itself without making breaking change,
+        // that is explained in the code comments for createGlobalScopedContext.tsx,
+        // we need to handle with a ref that holds on to the cleanup function last returned when the ref callback is called.
+        unregisterElementRef.current()
+        unregisterElementRef.current = null
+      }
+
+      ref.current = el
+
+      // Register root element (for nested menus)
+      if (ref.current && registerElement) {
+        unregisterElementRef.current = registerElement(ref.current)
+      }
     },
-    [forwardedRef, setRootElement],
+    [registerElement],
   )
 
   // Trigger `onItemSelect` when active index changes
@@ -91,13 +106,7 @@ export const Menu = forwardRef(function Menu(
   }, [activeIndex, onItemSelect])
 
   // Close menu when clicking outside
-  useClickOutside(
-    useCallback(
-      (event) => isTopLayer && onClickOutside && onClickOutside(event),
-      [isTopLayer, onClickOutside],
-    ),
-    [rootElement],
-  )
+  useClickOutsideEvent(isTopLayer && onClickOutside, () => [ref.current])
 
   // Close menu when pressing Escape
   useGlobalKeyDown(
@@ -113,13 +122,6 @@ export const Menu = forwardRef(function Menu(
       [isTopLayer, onEscape],
     ),
   )
-
-  // Register root element (for nested menus)
-  useEffect(() => {
-    if (!rootElement || !registerElement) return
-
-    return registerElement(rootElement)
-  }, [registerElement, rootElement])
 
   const value: MenuContextValue = useMemo(
     () => ({
@@ -167,3 +169,4 @@ export const Menu = forwardRef(function Menu(
     </MenuContext.Provider>
   )
 })
+Menu.displayName = 'ForwardRef(Menu)'

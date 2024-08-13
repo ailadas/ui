@@ -9,7 +9,7 @@ export interface TabPanelProps extends BoxProps {
    * The `id` of the correlating `Tab` component.
    */
   'aria-labelledby': string
-  id: string
+  'id': string
 }
 
 /**
@@ -35,3 +35,4 @@ export const TabPanel = forwardRef(function TabPanel(
     </Box>
   )
 })
+TabPanel.displayName = 'ForwardRef(TabPanel)'

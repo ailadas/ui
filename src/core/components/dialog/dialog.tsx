@@ -1,6 +1,6 @@
 import {CloseIcon} from '@sanity/icons'
 import {ThemeColorSchemeKey} from '@sanity/ui/theme'
-import {forwardRef, useCallback, useEffect, useRef, useState} from 'react'
+import {forwardRef, useCallback, useEffect, useImperativeHandle, useRef} from 'react'
 import {styled} from 'styled-components'
 import {
   containsOrEqualsElement,
@@ -10,8 +10,7 @@ import {
 } from '../../helpers'
 import {
   useArrayProp,
-  useClickOutside,
-  useForwardedRef,
+  useClickOutsideEvent,
   useGlobalKeyDown,
   usePrefersReducedMotion,
 } from '../../hooks'
@@ -151,13 +150,13 @@ const DialogFooter = styled(Box)`
 
 const DialogCard = forwardRef(function DialogCard(
   props: DialogCardProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
+  forwardedRef: React.ForwardedRef<HTMLDivElement>,
 ) {
   const {
     __unstable_autoFocus: autoFocus,
     __unstable_hideCloseButton: hideCloseButton,
     children,
-    contentRef,
+    contentRef: forwardedContentRef,
     footer,
     header,
     id,
@@ -175,23 +174,28 @@ const DialogCard = forwardRef(function DialogCard(
   const radius = useArrayProp(radiusProp)
   const shadow = useArrayProp(shadowProp)
   const width = useArrayProp(widthProp)
-  const forwardedRef = useForwardedRef(ref)
-  const [rootElement, setRootElement] = useState<HTMLDivElement | null>(null)
-  const localContentRef = useRef<HTMLDivElement | null>(null)
+  const ref = useRef<HTMLDivElement | null>(null)
+  const contentRef = useRef<HTMLDivElement | null>(null)
   const layer = useLayer()
   const {isTopLayer} = layer
   const labelId = `${id}_label`
   const showCloseButton = Boolean(onClose) && hideCloseButton === false
   const showHeader = Boolean(header) || showCloseButton
 
+  useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(forwardedRef, () => ref.current)
+  useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(
+    forwardedContentRef,
+    () => contentRef.current,
+  )
+
   useEffect(() => {
     if (!autoFocus) return
 
     // On mount: focus the first focusable element
-    if (forwardedRef.current) {
-      focusFirstDescendant(forwardedRef.current)
+    if (ref.current) {
+      focusFirstDescendant(ref.current)
     }
-  }, [autoFocus, forwardedRef])
+  }, [autoFocus, ref])
 
   useGlobalKeyDown(
     useCallback(
@@ -215,11 +219,10 @@ const DialogCard = forwardRef(function DialogCard(
     ),
   )
 
-  useClickOutside(
-    useCallback(
-      (event: MouseEvent) => {
-        if (!isTopLayer || !onClickOutside) return
-
+  useClickOutsideEvent(
+    isTopLayer &&
+      onClickOutside &&
+      ((event) => {
         const target = event.target as Node | null
 
         if (target && !isTargetWithinScope(boundaryElement, portalElement, target)) {
@@ -228,32 +231,13 @@ const DialogCard = forwardRef(function DialogCard(
         }
 
         onClickOutside()
-      },
-      [boundaryElement, isTopLayer, onClickOutside, portalElement],
-    ),
-    [rootElement],
-  )
-
-  const setRef = useCallback(
-    (el: HTMLDivElement | null) => {
-      setRootElement(el)
-      forwardedRef.current = el
-    },
-    [forwardedRef],
-  )
-
-  const setContentRef = useCallback(
-    (el: HTMLDivElement | null) => {
-      localContentRef.current = el
-      if (typeof contentRef === 'function') contentRef(el)
-      else if (contentRef) contentRef.current = el
-    },
-    [contentRef],
+      }),
+    () => [ref.current],
   )
 
   return (
     <DialogContainer data-ui="DialogCard" width={width}>
-      <DialogCardRoot radius={radius} ref={setRef} scheme={scheme} shadow={shadow}>
+      <DialogCardRoot radius={radius} ref={ref} scheme={scheme} shadow={shadow}>
         <DialogLayout direction="column">
           {showHeader && (
             <DialogHeader>
@@ -281,7 +265,7 @@ const DialogCard = forwardRef(function DialogCard(
             </DialogHeader>
           )}
 
-          <DialogContent flex={1} ref={setContentRef} tabIndex={-1}>
+          <DialogContent flex={1} ref={contentRef} tabIndex={-1}>
             {children}
           </DialogContent>
 
@@ -291,6 +275,8 @@ const DialogCard = forwardRef(function DialogCard(
     </DialogContainer>
   )
 })
+
+DialogCard.displayName = 'ForwardRef(DialogCard)'
 
 /**
  * The Dialog component.
@@ -440,3 +426,4 @@ export const Dialog = forwardRef(function Dialog(
     </Portal>
   )
 })
+Dialog.displayName = 'ForwardRef(Dialog)'

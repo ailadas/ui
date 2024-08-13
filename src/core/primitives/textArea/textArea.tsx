@@ -1,7 +1,7 @@
 import {ThemeFontWeightKey} from '@sanity/ui/theme'
-import {forwardRef} from 'react'
+import {forwardRef, useImperativeHandle, useRef} from 'react'
 import {styled} from 'styled-components'
-import {useForwardedRef, useCustomValidity, useArrayProp} from '../../hooks'
+import {useCustomValidity, useArrayProp} from '../../hooks'
 import {
   responsiveInputPaddingStyle,
   responsiveRadiusStyle,
@@ -21,6 +21,10 @@ import {ResponsiveRadiusProps} from '../types'
  * @public
  */
 export interface TextAreaProps extends ResponsiveRadiusProps {
+  /**
+   * @beta
+   */
+  __unstable_disableFocusRing?: boolean
   border?: boolean
   customValidity?: string
   fontSize?: number | number[]
@@ -66,12 +70,18 @@ export const TextArea = forwardRef(function TextArea(
     padding = 3,
     radius = 2,
     weight,
+    __unstable_disableFocusRing,
     ...restProps
   } = props
 
-  const ref = useForwardedRef(forwardedRef)
+  const ref = useRef<HTMLTextAreaElement | null>(null)
 
   const rootTheme = useRootTheme()
+
+  useImperativeHandle<HTMLTextAreaElement | null, HTMLTextAreaElement | null>(
+    forwardedRef,
+    () => ref.current,
+  )
 
   useCustomValidity(ref, customValidity)
 
@@ -94,6 +104,7 @@ export const TextArea = forwardRef(function TextArea(
         />
         <Presentation
           $radius={useArrayProp(radius)}
+          $unstableDisableFocusRing={__unstable_disableFocusRing}
           $scheme={rootTheme.scheme}
           $tone={rootTheme.tone}
           data-border={border ? '' : undefined}
@@ -104,3 +115,4 @@ export const TextArea = forwardRef(function TextArea(
     </Root>
   )
 })
+TextArea.displayName = 'ForwardRef(TextArea)'

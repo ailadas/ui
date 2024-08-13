@@ -6,9 +6,14 @@ import {EMPTY_ARRAY} from '../constants'
  */
 export type ClickOutsideListener = (event: MouseEvent) => void
 
+/**
+ * @public
+ */
+export type ClickOutsideElements = (HTMLElement | null | (HTMLElement | null)[])[]
+
 function _getElements(
   element: HTMLElement | null,
-  elementsArg: Array<HTMLElement | HTMLElement[] | null>,
+  elementsArg: ClickOutsideElements,
 ): HTMLElement[] {
   const ret = [element]
 
@@ -25,10 +30,22 @@ function _getElements(
 
 /**
  * @public
+ * @deprecated replaced by the new `useClickOutsideEvent` hook, instead of:
+ * ```tsx
+ * const [button, setButtonElement] = useState(null)
+ * useClickOutside((event) => {}, [button])
+ * return <button ref={setButtonElement} />
+ * ```
+ * do:
+ * ```tsx
+ * const buttonRef = useRef()
+ * useClickOutsideEvent((event) => {}, () => [buttonRef.current])
+ * return <button ref={buttonRef} />
+ * ```
  */
 export function useClickOutside(
   listener: ClickOutsideListener,
-  elementsArg: Array<HTMLElement | HTMLElement[] | null> = EMPTY_ARRAY,
+  elementsArg: ClickOutsideElements = EMPTY_ARRAY,
   boundaryElement?: HTMLElement | null,
 ): (el: HTMLElement | null) => void {
   const [element, setElement] = useState<HTMLElement | null>(null)

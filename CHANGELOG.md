@@ -5,6 +5,218 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.8](https://github.com/sanity-io/ui/compare/v2.8.7...v2.8.8) (2024-07-19)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/icons to ^3.3.1 ([#1402](https://github.com/sanity-io/ui/issues/1402)) ([8614743](https://github.com/sanity-io/ui/commit/8614743ca5fb07e711fb66ceaddf578632aa3919))
+
+## [2.8.7](https://github.com/sanity-io/ui/compare/v2.8.6...v2.8.7) (2024-07-19)
+
+### Bug Fixes
+
+- add `displayName` to all components to improve debugging ([#1401](https://github.com/sanity-io/ui/issues/1401)) ([1ab0c18](https://github.com/sanity-io/ui/commit/1ab0c18f851e1ca4d2b45fb45edc7e386858aff0))
+
+## [2.8.6](https://github.com/sanity-io/ui/compare/v2.8.5...v2.8.6) (2024-07-18)
+
+### Bug Fixes
+
+- **MenuGroup:** reduce rerenders when opening groups ([#1399](https://github.com/sanity-io/ui/issues/1399)) ([9c982ea](https://github.com/sanity-io/ui/commit/9c982eaad50e7cf11dbecb20962c0f63fd4dd9ff))
+- **menu:** refactor to `useClickOutsideEvent` ([#1397](https://github.com/sanity-io/ui/issues/1397)) ([b830db1](https://github.com/sanity-io/ui/commit/b830db1fd83fa58b8941b3bb3652fa4eca06ee4b))
+
+## [2.8.5](https://github.com/sanity-io/ui/compare/v2.8.4...v2.8.5) (2024-07-18)
+
+### Bug Fixes
+
+- **useClickOutsideEvent:** implement `useDebugValue` to report enabled status ([#1398](https://github.com/sanity-io/ui/issues/1398)) ([67fe3de](https://github.com/sanity-io/ui/commit/67fe3def20b3a39ebdbbfac5c80a8b4e7a276b90))
+
+## [2.8.4](https://github.com/sanity-io/ui/compare/v2.8.3...v2.8.4) (2024-07-18)
+
+### Bug Fixes
+
+- **dialog:** refactor to `useClickOutsideEvent` ([#1396](https://github.com/sanity-io/ui/issues/1396)) ([375d83e](https://github.com/sanity-io/ui/commit/375d83e98832ef0fece8f040378599904d289bc5))
+
+## [2.8.3](https://github.com/sanity-io/ui/compare/v2.8.2...v2.8.3) (2024-07-18)
+
+### Bug Fixes
+
+- **breadcrumbs:** refactor to `useClickOutsideEvent` ([#1395](https://github.com/sanity-io/ui/issues/1395)) ([a4f313d](https://github.com/sanity-io/ui/commit/a4f313d586a03dd349462740dfcd06b00169db1e))
+
+## [2.8.2](https://github.com/sanity-io/ui/compare/v2.8.1...v2.8.2) (2024-07-17)
+
+### Bug Fixes
+
+- revert `useClickOutside` behaviour in dialog & menu ([#1394](https://github.com/sanity-io/ui/issues/1394)) ([686bd1f](https://github.com/sanity-io/ui/commit/686bd1f223fbd9a7e6098418c48bb82a0f0c8ff3))
+
+## [2.8.1](https://github.com/sanity-io/ui/compare/v2.8.0...v2.8.1) (2024-07-17)
+
+### Bug Fixes
+
+- restore `useClickOutside` behaviour, move new logic to `useClickOutsideEvent` ([#1391](https://github.com/sanity-io/ui/issues/1391)) ([d3ac101](https://github.com/sanity-io/ui/commit/d3ac101666f381ab0e6a8b7857e53e6380e6d296))
+
+## [2.8.0](https://github.com/sanity-io/ui/compare/v2.7.0...v2.8.0) (2024-07-17)
+
+### Features
+
+- **useClickOutside:** support react refs ([#1390](https://github.com/sanity-io/ui/issues/1390)) ([cb182db](https://github.com/sanity-io/ui/commit/cb182db8bc3caf5347a33acc2ae8ffc6a69f39b0))
+
+## [2.7.0](https://github.com/sanity-io/ui/compare/v2.6.8...v2.7.0) (2024-07-16)
+
+### Features
+
+- add `useMatchMedia` hook ([0f61001](https://github.com/sanity-io/ui/commit/0f6100174ad2f90bb46e411279c94e7b57c6b57b))
+- **usePrefersDark:** support custom getServerSnapshot ([3a02eeb](https://github.com/sanity-io/ui/commit/3a02eebc97175807520141ab7d2e74b59563a8ea))
+- **usePrefersReducedMotion:** support custom getServerSnapshot ([5c45dac](https://github.com/sanity-io/ui/commit/5c45dac2d3659637eafc0bcdcb16344c48422867))
+
+### Bug Fixes
+
+- **useMediaIndex:** reduce memory usage ([#1386](https://github.com/sanity-io/ui/issues/1386)) ([f47ca6e](https://github.com/sanity-io/ui/commit/f47ca6e9f6f16471a7fc4adfb93068d9ce9f4f5a))
+
+## [2.6.8](https://github.com/sanity-io/ui/compare/v2.6.7...v2.6.8) (2024-07-12)
+
+### Bug Fixes
+
+- **tooltip:** use layout effect to calculate width ([#1373](https://github.com/sanity-io/ui/issues/1373)) ([d27868e](https://github.com/sanity-io/ui/commit/d27868e1d741a04ab3bf49a101e1e5afbc009d81))
+
+## [2.6.7](https://github.com/sanity-io/ui/compare/v2.6.6...v2.6.7) (2024-07-11)
+
+### Bug Fixes
+
+- revert recent portal/tooltip changes ([#1372](https://github.com/sanity-io/ui/issues/1372)) ([627003e](https://github.com/sanity-io/ui/commit/627003e6929c809434b0b72fe8efeff6b0b577fd)), closes [#1371](https://github.com/sanity-io/ui/issues/1371) [#1370](https://github.com/sanity-io/ui/issues/1370) [#1369](https://github.com/sanity-io/ui/issues/1369)
+
+## [2.6.6](https://github.com/sanity-io/ui/compare/v2.6.5...v2.6.6) (2024-07-11)
+
+### Bug Fixes
+
+- **tooltip:** regression where hover to open stops working ([#1371](https://github.com/sanity-io/ui/issues/1371)) ([038011b](https://github.com/sanity-io/ui/commit/038011b496b02a84992360a73b5f556cf92d870c))
+
+## [2.6.5](https://github.com/sanity-io/ui/compare/v2.6.4...v2.6.5) (2024-07-11)
+
+### Bug Fixes
+
+- **tooltip:** use layout effect to calculate width ([#1370](https://github.com/sanity-io/ui/issues/1370)) ([e39ddbe](https://github.com/sanity-io/ui/commit/e39ddbea9e310fcbd87a43a7a5986261650855fb))
+
+## [2.6.4](https://github.com/sanity-io/ui/compare/v2.6.3...v2.6.4) (2024-07-11)
+
+### Bug Fixes
+
+- reduce layout trashing ([#1369](https://github.com/sanity-io/ui/issues/1369)) ([0cb1cb1](https://github.com/sanity-io/ui/commit/0cb1cb133fbf7f10ee821e9bcfce3a82bca6e5ae))
+
+## [2.6.3](https://github.com/sanity-io/ui/compare/v2.6.2...v2.6.3) (2024-07-08)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/icons to ^3.3.0 ([#1364](https://github.com/sanity-io/ui/issues/1364)) ([4bf02f5](https://github.com/sanity-io/ui/commit/4bf02f5495301f567bdace3e32d27bef61b00148))
+
+## [2.6.2](https://github.com/sanity-io/ui/compare/v2.6.1...v2.6.2) (2024-07-08)
+
+### Bug Fixes
+
+- **deps:** update dependency @floating-ui/react-dom to ^2.1.1 ([#1354](https://github.com/sanity-io/ui/issues/1354)) ([4642d8e](https://github.com/sanity-io/ui/commit/4642d8e252e96a697329994e921448e06ed1d151))
+
+## [2.6.1](https://github.com/sanity-io/ui/compare/v2.6.0...v2.6.1) (2024-07-02)
+
+### Bug Fixes
+
+- **menu:** override popover html attribute ([#1351](https://github.com/sanity-io/ui/issues/1351)) ([dc30bc4](https://github.com/sanity-io/ui/commit/dc30bc420a999cee2b5651512edf7ddabad59c32))
+
+## [2.6.0](https://github.com/sanity-io/ui/compare/v2.5.0...v2.6.0) (2024-07-02)
+
+### Features
+
+- **textarea:** support for disabled focus ring ([#1353](https://github.com/sanity-io/ui/issues/1353)) ([5fa6f31](https://github.com/sanity-io/ui/commit/5fa6f3152d4a6bdab8238b74730bc73f3ccc182d))
+
+## [2.5.0](https://github.com/sanity-io/ui/compare/v2.4.0...v2.5.0) (2024-06-25)
+
+### Features
+
+- open on focus prop ([28086f4](https://github.com/sanity-io/ui/commit/28086f481e2499c28452bcf5979cefa4d9c7ece4))
+- rename func ([321b4d6](https://github.com/sanity-io/ui/commit/321b4d6fba7ff5828d32a239eaef4a00bae8a955))
+
+## [2.4.0](https://github.com/sanity-io/ui/compare/v2.3.6...v2.4.0) (2024-06-17)
+
+### Features
+
+- add loading bar to toast ([#1346](https://github.com/sanity-io/ui/issues/1346)) ([06f9107](https://github.com/sanity-io/ui/commit/06f910756e8d25d8ea0e175ac6023fc3f27cfcb0))
+
+## [2.3.6](https://github.com/sanity-io/ui/compare/v2.3.5...v2.3.6) (2024-06-14)
+
+### Bug Fixes
+
+- forward child refs to fix regression in [#1343](https://github.com/sanity-io/ui/issues/1343) ([#1350](https://github.com/sanity-io/ui/issues/1350)) ([cab318e](https://github.com/sanity-io/ui/commit/cab318eac9ee9d3036db56eb972442e10fe877b0))
+
+## [2.3.5](https://github.com/sanity-io/ui/compare/v2.3.4...v2.3.5) (2024-06-13)
+
+### Bug Fixes
+
+- react 19 compat issues with children prop ([#1349](https://github.com/sanity-io/ui/issues/1349)) ([98cdd3f](https://github.com/sanity-io/ui/commit/98cdd3f9c986f9b2a7cc70cdbee42d17705868f5))
+
+## [2.3.4](https://github.com/sanity-io/ui/compare/v2.3.3...v2.3.4) (2024-06-13)
+
+### Bug Fixes
+
+- **menu:** allow overriding `selected` property on `MenuButton` ([eae34c1](https://github.com/sanity-io/ui/commit/eae34c1e74c20c8e39644b387fed2a1697c09d85))
+
+## [2.3.3](https://github.com/sanity-io/ui/compare/v2.3.2...v2.3.3) (2024-06-12)
+
+### Bug Fixes
+
+- **theme:** placeholder color in dark mode ([94c5887](https://github.com/sanity-io/ui/commit/94c58870b7ca0f21c35a91cb7e1796a00e3e675d))
+
+## [2.3.2](https://github.com/sanity-io/ui/compare/v2.3.1...v2.3.2) (2024-06-10)
+
+### Bug Fixes
+
+- **button:** use JSX instead of createElement ([d1f5648](https://github.com/sanity-io/ui/commit/d1f56481f639861687baab6b4b08713142df1012))
+- **menu-button:** handle child refs safely ([9ca1312](https://github.com/sanity-io/ui/commit/9ca13128b5d010b694196e2c5082c1189edd6a11))
+- **menu-group:** use JSX instead of createElement ([061f67d](https://github.com/sanity-io/ui/commit/061f67d6de5ca57345b7b1e7bce88e92f64b9c66))
+- **menu-item:** use JSX instead of createElement ([c61aa10](https://github.com/sanity-io/ui/commit/c61aa103d479df3f042bb6b60017ccbdc97fd00d))
+- **text-input:** use JSX instead of createElement ([45c1fcf](https://github.com/sanity-io/ui/commit/45c1fcfa897992a511f7593109bdd1e1287e680a))
+- **tooltip:** handle child refs safely ([92b12a7](https://github.com/sanity-io/ui/commit/92b12a779e04dc3c0c4f67c464a1d969dda070af))
+- **tree-item:** use JSX instead of createElement ([c4d66c5](https://github.com/sanity-io/ui/commit/c4d66c5edb12d3826fd0c878fe7562f1192660b1))
+
+## [2.3.1](https://github.com/sanity-io/ui/compare/v2.3.0...v2.3.1) (2024-06-06)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/icons to ^3.2.0 ([#1342](https://github.com/sanity-io/ui/issues/1342)) ([1a09676](https://github.com/sanity-io/ui/commit/1a09676efef49ccd80e759b2d11f4125a55a6197))
+
+## [2.3.0](https://github.com/sanity-io/ui/compare/v2.2.0...v2.3.0) (2024-06-06)
+
+### Features
+
+- deprecate `useForwardedRef` ([#1324](https://github.com/sanity-io/ui/issues/1324)) ([62146b6](https://github.com/sanity-io/ui/commit/62146b6d4de04dc96c5a433d4925b9dbe0f81663))
+
+## [2.2.0](https://github.com/sanity-io/ui/compare/v2.1.14...v2.2.0) (2024-06-04)
+
+### Features
+
+- **card:** add `muted` property ([f70bff6](https://github.com/sanity-io/ui/commit/f70bff6422639dc6fe76a03bd67f09caf9b58c9b))
+
+## [2.1.14](https://github.com/sanity-io/ui/compare/v2.1.13...v2.1.14) (2024-05-29)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/icons to v3 ([#1322](https://github.com/sanity-io/ui/issues/1322)) ([b1b31c0](https://github.com/sanity-io/ui/commit/b1b31c0c339ce09a841fff430d2c56cb6301ecf0))
+
+## [2.1.13](https://github.com/sanity-io/ui/compare/v2.1.12...v2.1.13) (2024-05-28)
+
+### Bug Fixes
+
+- **deps:** update dependency react-refractor to ^2.2.0 ([#1316](https://github.com/sanity-io/ui/issues/1316)) ([a156277](https://github.com/sanity-io/ui/commit/a156277ea35f58a35ddd827442d095c389df9c42))
+
+## [2.1.12](https://github.com/sanity-io/ui/compare/v2.1.11...v2.1.12) (2024-05-23)
+
+### Bug Fixes
+
+- **deps:** update dependency @floating-ui/react-dom to ^2.1.0 ([#1309](https://github.com/sanity-io/ui/issues/1309)) ([c0d4ee7](https://github.com/sanity-io/ui/commit/c0d4ee72512c11c97b74424453ec370275cdbb04))
+
+## [2.1.11](https://github.com/sanity-io/ui/compare/v2.1.10...v2.1.11) (2024-05-19)
+
+### Bug Fixes
+
+- pin framer-motion to an earlier version ([#1302](https://github.com/sanity-io/ui/issues/1302)) ([0960b29](https://github.com/sanity-io/ui/commit/0960b297c32c3e3de61fd7364512253fafdb38ed))
+
 ## [2.1.10](https://github.com/sanity-io/ui/compare/v2.1.9...v2.1.10) (2024-05-16)
 
 ### Bug Fixes
